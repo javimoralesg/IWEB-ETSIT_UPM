@@ -4,48 +4,34 @@ import { useSearchParams } from 'react-router';
 import Location from './Location';
 
 export default function SearchPage({theproducts}) {
+  const [filtro, setFiltro] = useState("");
+  const [productosFiltradosBusqueda, setProductosFiltradosBusqueda] = useState(theproducts);
+  const [productosFiltradosCategoria_Finales, setProductosFiltradosCategoria_Finales] = useState(theproducts);
+
   const [searchParams, setSearchParams] = useSearchParams({ category: "All" });
 
-  const [filtro, setFiltro] = useState("");
-  const [productosFiltrados, setProductosFiltrados] = useState(theproducts);
-  const [hayFiltro, setHayFiltro] = useState(false);
-
-  const [productosFinales, setProductosFinales] = useState(theproducts);
-
-
-  useEffect(() => {
-    if(filtro.trim() === "") {
-      setHayFiltro(false);
-    }
-  }, [filtro]);
-
   const filtrar = () => {
-    const filtrarPor = filtro.trim(); //quito espacios en blanco
-    setHayFiltro(true);
-    const filteredProducts = theproducts.filter(producto => 
-      producto.title.toLowerCase().includes(filtrarPor.toLowerCase())
-    );
-    setProductosFiltrados(filteredProducts);
+    if (filtro === ""){
+      setProductosFiltradosBusqueda(theproducts);
+    } else {
+      const productosProvisionales = theproducts.filter( product => product.title.toLowerCase().includes(filtro.toLowerCase()) );
+      setProductosFiltradosBusqueda(productosProvisionales);
+    }
   }
 
-  useEffect(() => {  
-    setProductosFinales(hayFiltro ? productosFiltrados : theproducts);
-  }, [hayFiltro]);
-
-  useEffect(() => {
-    if(searchParams.get("category") === "All") {
-      setProductosFinales(hayFiltro ? productosFiltrados : theproducts);  
+  useEffect( () => {
+    if ( searchParams.get("category") === "All"){
+      setProductosFiltradosCategoria_Finales(productosFiltradosBusqueda);
     } else {
-      const filteredByCategory = (hayFiltro ? productosFiltrados : theproducts).filter(producto => producto.category === searchParams.get("category"));
-      setProductosFinales(filteredByCategory);
+      const productosProvisionales = productosFiltradosBusqueda.filter( product => product.category === searchParams.get("category") );
+      setProductosFiltradosCategoria_Finales(productosProvisionales);
     }
     
-  }, [searchParams.get("category"), hayFiltro]);
+  }, [searchParams.get("category"), productosFiltradosBusqueda]);
 
   return (
     <>
       <Location />
-
 
       <div className="titular">
         <div className="busqueda">
@@ -69,8 +55,7 @@ export default function SearchPage({theproducts}) {
         </div>
       </div>
 
-
-      <Lista productos={productosFinales} />       
+      <Lista productos={searchParams.get("category") === null ? productosFiltradosBusqueda : productosFiltradosCategoria_Finales } />       
         
     </>
   );
