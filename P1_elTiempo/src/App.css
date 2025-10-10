@@ -1,0 +1,140 @@
+#root {
+  width: 80%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  border: 2px solid black;
+  min-width: 565px;
+}
+
+#busqueda {
+  display: flex;
+  justify-content: space-around;
+}
+ 
+#criterios {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5em;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7em;
+}
+
+#micabecera {
+  background-color: #7a9ccca1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5em;
+}
+
+.milogo {
+  height: 6em;
+  will-change: filter;
+  transition: filter 300ms;
+  animation: logo-spin 2s;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+#buscar {
+  background-color: #7a9ccca1; /* Green */
+  border: none;
+  color: black;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+} 
+
+#buscar:hover {
+  background-color: #6C8EBF; /* Darker green */
+  color: white;
+}
+
+h2 {
+  color: black;
+  text-decoration: underline;
+}
+
+h3 {
+  color: black;
+}
+
+
+
+
+
+.carousel-container {
+  overflow-x: auto;         
+  display: flex;            
+  gap: 20px;                
+  padding: 20px;
+  scroll-behavior: smooth;     
+  justify-content: flex-start;
+}
+.carousel-container::before,
+.carousel-container::after {
+  content: "";
+  flex: 1 0 0; /* Ocupa espacio extra si hay */
+}
+
+/* Oculta scrollbar en navegadores webkit */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Cada carta */
+.carousel-container li {
+  list-style: none;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 0 0 130px;
+}
+
+/* Efecto hover */
+.carousel-container li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
