@@ -23,7 +23,7 @@ function App() {
       if(CONFIG.use_server) {
         try {
           const response = await fetch(`${CONFIG.server_url}?limit=${CONFIG.num_items}`);
-          if (response.ok) {
+          if (response.status === 200) {
             const data = await response.json();
             setProductos(data.products);
           } else {
