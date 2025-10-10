@@ -2,12 +2,13 @@ import { Link, useParams } from 'react-router';
 import { useState } from 'react';
 import Location from './Location';
 import ReactMarkdown from 'react-markdown';
+import CONFIG from './config/config';
 
 export default function ProductPage({ theproducts }) {
     const { productId } = useParams();
     const [summary, setSummary] = useState("");
 
-    const GROQ_API_KEY = "YOUR_GROQ_API_KEY_HERE";
+    const GROQ_API_KEY = CONFIG.GROQ_API_KEY;
     const [loading, setLoading] = useState(false);
 
     const productoMostrar = theproducts.find(({id}) => { return id === Number(productId)});
