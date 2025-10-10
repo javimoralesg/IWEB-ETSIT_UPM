@@ -8,7 +8,6 @@ export default function ProductPage({ theproducts }) {
     const { productId } = useParams();
     const [summary, setSummary] = useState("");
 
-    const GROQ_API_KEY = CONFIG.GROQ_API_KEY;
     const [loading, setLoading] = useState(false);
 
     const productoMostrar = theproducts.find(({id}) => { return id === Number(productId)});
@@ -52,7 +51,7 @@ export default function ProductPage({ theproducts }) {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${GROQ_API_KEY}`
+                "Authorization": `Bearer ${CONFIG.GROQ_API_KEY}`
                 },
                 body: JSON.stringify({
                 model: "llama-3.3-70b-versatile",
