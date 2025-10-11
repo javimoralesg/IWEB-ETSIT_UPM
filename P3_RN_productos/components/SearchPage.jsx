@@ -7,7 +7,7 @@ export default function SearchPage({theproducts, navigation}){
 
     
     const _onPressButtonBuscar = () => {
-        if(inputValue == "") {
+        if(inputValue === "") {
             setListaProductos(theproducts);
         } else {
             const listaProvisional = theproducts.filter(item => item.title.toLowerCase().includes(inputValue.toLowerCase()));
